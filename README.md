@@ -7,11 +7,13 @@ This model is then compared to an Azure AutoML run.
 
 ## Summary
 **In 1-2 sentences, explain the problem statement: e.g "This dataset contains data about... we seek to predict..."**
-Here we are leveraging machine learning to perform a classification and predict when a Term Deposit should be opend or not.
+Here we are leveraging machine learning to perform a classification and predict when a Term Deposit will be opend or not by the potential customer.
 Dataset has various personal info about the employee and his past expereince with Term Deposit. We seek to predict if he will open a Term Deposit or Not
 
 **In 1-2 sentences, explain the solution: e.g. "The best performing model was a ..."**
-
+AutoML Model outperfromed the model trained with the help of Hyperdrive. The reason could be the parameter sample space 
+given to hyperdrive and also AutoML was able to try out several diffrent models while in our Hyperdrive experiment we were using 
+only Logistic Regression model 
 ## Scikit-learn Pipeline
 **Explain the pipeline architecture, including data, hyperparameter tuning, and classification algorithm.**
 1. The Architecture consist of a Training Script (train.py) that has three main section
