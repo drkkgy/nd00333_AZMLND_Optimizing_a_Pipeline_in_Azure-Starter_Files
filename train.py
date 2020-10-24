@@ -8,17 +8,19 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import OneHotEncoder
 import pandas as pd
 from azureml.core.run import Run
-from azureml.data.dataset_factory import TabularDatasetFactory
-
+from azureml.data.dataset_factory import TabularDatasetFactory as tdf
 # TODO: Create TabularDataset using TabularDatasetFactory
 # Data is located at:
 # "https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv"
+data_url = "https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv"
+ ### YOUR CODE HERE ###
 
-ds = ### YOUR CODE HERE ###
+ds = tdf.from_delimited_files(data_url)
 
 x, y = clean_data(ds)
 
 # TODO: Split data into train and test sets.
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.30, random_state=0)
 
 ### YOUR CODE HERE ###a
 
@@ -49,6 +51,8 @@ def clean_data(data):
     x_df["poutcome"] = x_df.poutcome.apply(lambda s: 1 if s == "success" else 0)
 
     y_df = x_df.pop("y").apply(lambda s: 1 if s == "yes" else 0)
+
+    return x_df , y_df
     
 
 def main():
