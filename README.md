@@ -22,6 +22,13 @@ only Logistic Regression model
 -- Spliting and training the Model using Logistic Regression model from SK Learn Library.
 2. We have a SK Learn Estimator where we load the train.py file as well as compute to run experiment on.
 3. We Create a Hyperdrive Config File with RandomParemeterSampling for a parameter space consisting of (max_iter,--C ) variables that are to be optimised and Bandit Policy is used as an Early stoping policy
+4. "max_iter" is the maximum no of iteration a model will run over for the solver to converge. Its critical as if we get too less value it will not allow the solver to converge 
+   and if to high it may lead to overfitting and wastege of compute resource in training a model that does not improve anymore.
+5. "C" reperesents the inverse of Regularisation Strength. It is used to boost generalisation of the model or rather prevent it from overfitting.
+   Smaller values of "C" specifies stronger regularisation. 
+6. Classification algorith used for this model training is Logistic Regression Classifier. The Highest accuracy achived by this model was 0.91462 after Hyperdrive optimisation.
+   The above results were achived with C: Value of 0.1 and max_iter Value of (300,200,50) so its quite clear that even 50 iteration were enough for the model to converge and increasing the iteration 
+   didnt imporved it. But on the other hand Hyperparameter "C" had a direct impact on trining on reducing its value by a factor of 10 made the model perform worse.
 **What are the benefits of the parameter sampler you chose?**
 We have taken Random sampling approch of randomly trying out diffrent combinations to reach the best result. We could have taken Bayesian Sampling which can coverge faster.
 But with the help of early stoping property Bandit Policy in this case server the similar purpose 
